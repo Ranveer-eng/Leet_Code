@@ -4,6 +4,9 @@ class Solution {
         int N = s.length(); 
         if (N == 0) 
             return ""; 
+        if(N == 1){
+            return s;
+        }
         N = 2 * N + 1; // Position count 
         int[] L = new int[N + 1]; // LPS Length Array 
         L[0] = 0; 
@@ -74,7 +77,7 @@ class Solution {
         String ans = "";
         for (i = start; i <= end; i++){
             //System.out.print(text.charAt(i)); 
-            ans += s.substring(i, i+1);
+            ans += String.valueOf(s.charAt(i));
             //System.out.println(); 
         }
         return ans;
