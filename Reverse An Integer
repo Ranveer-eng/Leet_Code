@@ -1,0 +1,48 @@
+class Solution {
+    public int reverse(int x) {
+        String s = Integer.toString(x);
+        int i = 0;
+        String newS = "";
+        int n = s.length();
+        if(s.substring(0,1).equals("-")){
+            i = 0;
+            newS = "-";
+            //n--;
+        }else{
+            i = 1;
+            newS = "";
+        }
+        
+        // while(x%10 == 0){
+        //     n--;
+        //     x = x/10;
+        // }
+        for(int j = 1; j <= n; j++){
+            String as = String.valueOf(s.charAt(n-j));
+            if(!as.equals("-"))
+                newS += as;
+        }
+        //System.out.println(newS);
+        return Integer.parseInt(newS);
+    }
+}
+
+//Above Approach give runtime error
+//New Approach
+
+class Solution {
+    public int reverse(int x) {
+        long reversed = 0;
+        int rem = 0;
+        while(x != 0){
+            rem = x%10;
+            reversed = reversed*10 + rem;
+            x = x/10;
+        }
+        if((reversed > Integer.MAX_VALUE) || (reversed < Integer.MIN_VALUE))
+            return 0;
+        return (int)reversed;
+    }
+}
+
+//This approach is super cool.
