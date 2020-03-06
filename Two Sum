@@ -1,0 +1,22 @@
+//Brute force Approach O(n*n);
+
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        int[] cnt = new int[2];
+        for(int i = 0; i < nums.length; i++){
+            for(int j = i+1; j < nums.length; j++){
+                if(nums[i] + nums[j] == target){
+                    cnt[0] = i;
+                    cnt[1] = j;
+                    return cnt;
+                }
+            }
+        }
+        return cnt;
+    }
+}
+
+
+//2nd Approach
+//Two-pass Hash Table
+
