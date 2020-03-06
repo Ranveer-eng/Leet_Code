@@ -1,0 +1,53 @@
+class Solution {
+    public static String removeLeadingZeroes(String value) {
+     while (value.length() > 1 && value.indexOf("0")==0)
+         value = value.substring(1);
+         return value;
+    }
+    
+    public int myAtoi(String str) {
+        String names = "-+0123456789";
+        //str = str.replaceAll("\\s","");
+        str = str.trim();
+        String s = "";
+        long num = 0;
+        for(int i = 0; i < str.length(); i++){
+            if((String.valueOf(str.charAt(i)).equals("-") || String.valueOf(str.charAt(i)).equals("+") )&& i != 0){
+                break;
+            }
+            if(names.contains(String.valueOf(str.charAt(i)))){
+                s += String.valueOf(str.charAt(i));
+            }else{
+                break;
+            }
+        }
+        if( !s.equals("") && s.charAt(0) != '-')
+            s = removeLeadingZeroes(s);
+        else if(!s.equals("")){
+            s = removeLeadingZeroes(s.substring(1));
+            s = "-" + s;
+        }
+        if(s.equals("")){
+            return 0;
+        }else if(s.substring(s.length()-1).equals("-") || s.substring(s.length()-1).equals("+")){
+            return 0;
+        }
+        for(int i = 0; i < s.length(); i++){
+            if(String.valueOf(s.charAt(i)).equals("-") || String.valueOf(s.charAt(i)).equals("+")){
+                continue;
+            }else if(i <= 12){
+                num = num*10 + Long.parseLong(String.valueOf(s.charAt(i)));
+            }
+        }
+        if(String.valueOf(s.charAt(0)).equals("-")){
+            num = 0 - num;
+        }
+        if(num < Integer.MIN_VALUE){
+            return Integer.MIN_VALUE;
+        }else if(num > Integer.MAX_VALUE){
+            return Integer.MAX_VALUE;
+        }else{
+            return (int)num;
+        }
+    }
+}
