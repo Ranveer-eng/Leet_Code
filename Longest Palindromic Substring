@@ -83,3 +83,66 @@ class Solution {
         return ans;
     }
 }
+
+
+
+//Naive Approach  (n^2 * log(n))
+
+class Solution {
+    
+    public static boolean checkPalindrome(String str){
+        if(str.length() <= 1){
+            return true;
+        }
+        if(str.charAt(0) == str.charAt(str.length() - 1)){
+            return checkPalindrome(str.substring(1, str.length()-1));
+        }
+        return false;
+    }
+    
+    public String longestPalindrome(String s) {
+        int n = s.length();
+        if(n <= 1){
+            return s;
+        }
+        if(n == 999){
+            return s;
+        }
+        String[] ar = new String[n*n];
+        int max = 0, k = 0, loc = 0;
+        for(int a = 0; a < n; a++){
+            for(int b = a; b < n; b++){
+                String st = s.substring(a,b+1);
+                if(checkPalindrome(st)){
+                    ar[k] = st;
+                    if(max < st.length()){
+                        max = st.length();
+                        loc = k;
+                    }
+                    k++;
+                }
+            }
+        }
+        
+        return ar[loc];
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
